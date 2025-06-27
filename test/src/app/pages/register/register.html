@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="form-box">
+    <div class="left-panel">
+      <h1>Welcome to Ericsson</h1>
+      <h2>Create new account<span>.</span></h2>
+      <p>Already A Member? <a href="#">Log In</a></p>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Username" formControlName="username" required/>
+        <input type="password" placeholder="Password" formControlName="password"  required/>
+        
+        <div class="buttons">
+          <button type="submit" class="primary">Create account</button>
+        </div>
+      </form>
+    </div>
+    <div class="right-panel">
+      <img src="assets\office.jpg" alt="Welcome to Ericsson"/>
+    </div>
+  </div>
+</div>
+
