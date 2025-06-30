@@ -20,10 +20,10 @@ export class FormPage implements OnInit {
 
   states: string[] = ['West Bengal', 'Delhi', 'Maharashtra', 'Tamil Nadu'];
   allCities: { [key: string]: string[] } = {
-    'West Bengal': ['Kolkata', 'Siliguri'],
-    'Delhi': ['New Delhi', 'Dwarka'],
-    'Maharashtra': ['Mumbai', 'Pune'],
-    'Tamil Nadu': ['Chennai', 'Coimbatore']
+    'West Bengal': ['Kolkata', 'Siliguri', 'Asansol', 'Bardhaman', 'Durgapur', 'Bishnupur'],
+    'Delhi': ['New Delhi', 'Dwarka', 'Noida', 'Ghaziabad', 'Faridabad', 'Gurgaon'],
+    'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Thane', 'Nashik', 'Aurangabad'],
+    'Tamil Nadu': ['Chennai', 'Coimbatore', 'Vellore', 'Salem', 'Madurai']
   };
   filteredCities: string[] = [];
 
