@@ -1,0 +1,68 @@
+// Full page background styling (optional)
+body {
+  background: linear-gradient(135deg, #e3f2fd, #90caf9);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+// Center the login form container
+#login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    input {
+      padding: 0.85rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: #1976d2;
+        box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+        outline: none;
+      }
+    }
+
+    button {
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: #1976d2;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #1565c0;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
+
+// Heading styling
+h2 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #0d47a1;
+}
