@@ -1,0 +1,10 @@
+<div class="background">
+  <div class="login-container">
+    <h2>Employee Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <input formControlName="username" type="text" placeholder="Username" />
+      <input formControlName="password" type="password" placeholder="Password" />
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
+</div>

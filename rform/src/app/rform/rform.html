@@ -1,0 +1,129 @@
+<div class="top-logout">
+  <button (click)="logout()">Logout</button>
+</div>
+
+<h2>Employee Registration Form</h2>
+<hr color="black" size="2" width="100%" />
+<p>Fill in the details below to register as an employee.</p>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <label>Full Name:</label>
+    <div class="form-subgroup">
+      <input type="text" formControlName="firstName" placeholder="First Name">
+      <input type="text" formControlName="lastName" placeholder="Last Name">
+    </div>
+  </div>
+  <small *ngIf="f['firstName'].touched && f['firstName'].errors">
+    <span *ngIf="f['firstName'].errors['required']">Full name is required.</span>
+    <span *ngIf="f['firstName'].errors['pattern']">Only letters allowed.</span>
+  </small>
+ 
+
+  <div class="form-row">
+    <label>Email:</label>
+    <input type="email" formControlName="email" placeholder="john.doe@example.com">
+  </div>
+  <small *ngIf="f['email'].touched && f['email'].errors">
+    <span *ngIf="f['email'].errors['required']">Email is required.</span>
+    <span *ngIf="f['email'].errors['email']">Invalid email format.</span>
+  </small>
+
+  <div class="form-row">
+    <label>Username:</label>
+    <input type="text" formControlName="username" placeholder="johndoe">
+  </div>
+  <small *ngIf="f['username'].touched && f['username'].errors">
+    <span *ngIf="f['username'].errors['required']">Username is required.</span>
+    <span *ngIf="f['username'].errors['minlength']">Min 4 characters.</span>
+  </small>
+
+  <div class="form-row">
+    <label>Password:</label>
+    <input type="password" formControlName="password" placeholder="Enter Password">
+  </div>
+  <small *ngIf="f['password'].touched && f['password'].errors">
+    <span *ngIf="f['password'].errors['required']">Password is required.</span>
+    <span *ngIf="f['password'].errors['minlength']">Min 6 characters.</span>
+  </small>
+
+  <div class="form-row">
+    <label>Confirm Password:</label>
+    <input type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+  </div>
+ 
+  <div class="form-row">
+    <label>Address:</label>
+    <textarea formControlName="address" placeholder="Address"></textarea>
+  </div>
+  <small *ngIf="f['address'].touched && f['address'].errors?.['required']">
+    Address is required.
+  </small>
+
+  <div class="form-row">
+    <label>Phone:</label>
+    <div class="phone-field">
+      <select formControlName="countryCode">
+        <option value="+91">🇮🇳 +91</option>
+        <option value="+1">🇺🇸 +1</option>
+      </select>
+      <input type="tel" formControlName="phone" placeholder="Phone Number">
+    </div>
+  </div>
+  <small *ngIf="f['phone'].touched && f['phone'].errors">
+    <span *ngIf="f['phone'].errors['required']">Phone number is required.</span>
+    <span *ngIf="f['phone'].errors['pattern']">Phone number must be 10 digits.</span>
+  </small>
+
+  <div class="form-row">
+    <label>Age:</label>
+    <input type="number" formControlName="age" placeholder="Age">
+  </div>
+  <small *ngIf="f['age'].touched && f['age'].errors">
+    <span *ngIf="f['age'].errors['required']">Age is required.</span>
+    <span *ngIf="f['age'].errors['min']">Min age is 18.</span>
+    <span *ngIf="f['age'].errors['max']">Max age is 100.</span>
+  </small>
+
+  <div class="form-row">
+    <label>Gender:</label>
+    <div class="gender-options">
+      <label><input type="radio" value="Male" formControlName="gender"> Male</label>
+      <label><input type="radio" value="Female" formControlName="gender"> Female</label>
+      <label><input type="radio" value="Other" formControlName="gender"> Other</label>
+    </div>
+  </div>
+  <small *ngIf="f['gender'].touched && f['gender'].errors?.['required']">Gender is required.</small>
+
+  <div class="form-row">
+    <label>State:</label>
+    <select formControlName="state" (change)="onStateChange()">
+      <option value="">--Select State--</option>
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+  </div>
+  <small *ngIf="f['state'].touched && f['state'].errors?.['required']">State is required.</small>
+
+  <div class="form-row">
+    <label>City:</label>
+    <select formControlName="city">
+      <option value="">--Select City--</option>
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+  </div>
+  <small *ngIf="f['city'].touched && f['city'].errors?.['required']">City is required.</small>
+
+  <div class="form-row">
+    <label>Pin Code:</label>
+    <input type="" formControlName="pinCode" placeholder="Pin Code">
+  </div>
+  <small *ngIf="f['pinCode'].touched && f['pinCode'].errors">
+    <span *ngIf="f['pinCode'].errors['required']">Pin Code is required.</span>
+    <span *ngIf="f['pinCode'].errors['pattern']">Pin Code must be 6 digits.</span>
+  </small>
+
+  <div id="buttons">
+    <button type="submit">Submit</button>
+    <button type="button" (click)="employeeForm.reset()">Cancel</button>
+  </div>
+</form>
