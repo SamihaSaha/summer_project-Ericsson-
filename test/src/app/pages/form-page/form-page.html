@@ -1,1 +1,165 @@
-<p>form-page works!</p>
+<div class="form-wrapper">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <h2>Employee Registration Form</h2>
+
+    <!-- Full Name -->
+    <div class="form-row">
+      <label>Full Name:</label>
+      <div class="full-name">
+        <input type="text" formControlName="firstName" placeholder="First Name" />
+        <input type="text" formControlName="lastName" placeholder="Last Name" />
+      </div>
+      <small *ngIf="f['firstName'].touched && f['firstName'].errors?.['required']">
+        First name is required.
+      </small>
+      <small *ngIf="f['lastName'].touched && f['lastName'].errors?.['required']">
+        Last name is required.
+      </small>
+    </div>
+
+    <!-- Email -->
+    <div class="form-row">
+      <label>Email:</label>
+      <input type="email" formControlName="email" placeholder="Ex: abc@gmail.com" />
+      <small *ngIf="f['email'].touched && f['email'].errors">
+        <span *ngIf="f['email'].errors['required']">Email is required.</span>
+        <span *ngIf="f['email'].errors['email']">Invalid email format.</span>
+      </small>
+    </div>
+
+    <!-- Username -->
+    <div class="form-row">
+      <label>Username:</label>
+      <input type="text" formControlName="username" placeholder="Enter username" />
+      <small *ngIf="f['username'].touched && f['username'].errors?.['required']">
+        Username is required.
+      </small>
+    </div>
+
+    <!-- Password -->
+<div class="form-row">
+  <label for="password">Password:</label>
+  <div class="password-toggle">
+    <input id="password" 
+           [type]="showPassword ? 'text' : 'password'" 
+           formControlName="password" 
+           placeholder="Enter password">
+    <button type="button" (click)="togglePasswordVisibility()">
+      {{ showPassword ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+  <small *ngIf="f['password'].touched && f['password'].errors">
+    <span *ngIf="f['password'].errors['required']">Password is required.</span>
+  </small>
+</div>
+
+
+    <!-- Confirm Password -->
+    <div class="form-row">
+  <label for="confirmPassword">Confirm Password:</label>
+  <div class="password-toggle">
+    <input id="confirmPassword" 
+           [type]="showConfirmPassword ? 'text' : 'password'" 
+           formControlName="confirmPassword" 
+           placeholder="Re-enter password">
+    <button type="button" (click)="toggleConfirmPasswordVisibility()">
+      {{ showConfirmPassword ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+  <small *ngIf="registrationForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
+    Passwords do not match.
+  </small>
+</div>
+
+
+    <!-- Address -->
+    <div class="form-row">
+      <label>Address:</label>
+      <textarea formControlName="address" placeholder="Enter address"></textarea>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-row">
+      <label>Phone:</label>
+      <div class="phone-input">
+        <select formControlName="countryCode" class="country-code">
+          <option value="+91">+91 (IN)</option>
+          <option value="+1">+1 (US)</option>
+          <option value="+44">+44 (UK)</option>
+          <option value="+61">+61 (AU)</option>
+          <option value="+81">+81 (JP)</option>
+        </select>
+        <input type="number" formControlName="phone" placeholder="Enter phone number" maxlength="10" (keypress)="allowOnlyNumbers($event)" />
+      </div>
+      <small *ngIf="f['phone'].touched && f['phone'].errors">
+        <span *ngIf="f['phone'].errors['required']">Phone number is required.</span>
+        <span *ngIf="f['phone'].errors['pattern']">Phone number must be 10 digits.</span>
+      </small>
+    </div>
+
+    <!-- Age -->
+    <div class="form-row">
+      <label>Age:</label>
+      <input type="number" formControlName="age" placeholder="Enter age" (keypress)="allowOnlyNumbers($event)" />
+      <small *ngIf="f['age'].touched && f['age'].errors">
+        <span *ngIf="f['age'].errors['required']">Age is required.</span>
+        <span *ngIf="f['age'].errors['min']">Minimum age is 18.</span>
+      </small>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-row">
+      <label>Gender:</label>
+      <div class="gender-options">
+        <label><input type="radio" formControlName="gender" value="male" /> Male</label>
+        <label><input type="radio" formControlName="gender" value="female" /> Female</label>
+        <label><input type="radio" formControlName="gender" value="other" /> Other</label>
+      </div>
+      <small *ngIf="f['gender'].touched && f['gender'].errors?.['required']">
+        Gender is required.
+      </small>
+    </div>
+
+    <!-- State -->
+    <div class="form-row">
+      <label>State:</label>
+      <select formControlName="state" (change)="onStateChange()">
+        <option value="">--Select State--</option>
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+      <small *ngIf="f['state'].touched && f['state'].errors?.['required']">
+        State is required.
+      </small>
+    </div>
+
+    <!-- City -->
+    <div class="form-row">
+      <label>City:</label>
+      <select formControlName="city">
+        <option value="">--Select City--</option>
+        <option *ngFor="let city of filteredCities" [value]="city">{{ city }}</option>
+      </select>
+      <small *ngIf="f['city'].touched && f['city'].errors?.['required']">
+        City is required.
+      </small>
+    </div>
+
+    <!-- Pin -->
+    <div class="form-row">
+      <label>Pin Code:</label>
+      <input type="text" formControlName="pin" placeholder="Enter pin code" maxlength="6" (keypress)="allowOnlyNumbers($event)" />
+      <small *ngIf="f['pin'].touched && f['pin'].errors">
+        <span *ngIf="f['pin'].errors['required']">Pin Code is required.</span>
+        <span *ngIf="f['pin'].errors['pattern']">Pin Code must be 6 digits.</span>
+      </small>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button type="submit">Submit</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+
+  <button class="logout" (click)="logout()">Logout</button>
+</div>
