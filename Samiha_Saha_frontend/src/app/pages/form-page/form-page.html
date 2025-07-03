@@ -38,21 +38,39 @@
 
     <!-- Password -->
     <div class="form-row">
-      <label>Password:</label>
-      <input type="password" formControlName="password" placeholder="Enter password" />
-      <small *ngIf="f['password'].touched && f['password'].errors?.['required']">
-        Password is required.
-      </small>
-    </div>
+  <label for="password">Password:</label>
+  <div class="password-toggle">
+    <input id="password" 
+           [type]="showPassword ? 'text' : 'password'" 
+           formControlName="password" 
+           placeholder="Enter password">
+    <button type="button" (click)="togglePasswordVisibility()">
+      {{ showPassword ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+  <small *ngIf="f['password'].touched && f['password'].errors">
+    <span *ngIf="f['password'].errors['required']">Password is required.</span>
+  </small>
+</div>
+
 
     <!-- Confirm Password -->
     <div class="form-row">
-      <label>Confirm Password:</label>
-      <input type="password" formControlName="confirmPassword" placeholder="Re-enter password" />
-      <small *ngIf="registrationForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
-        Passwords do not match.
-      </small>
-    </div>
+  <label for="confirmPassword">Confirm Password:</label>
+  <div class="password-toggle">
+    <input id="confirmPassword" 
+           [type]="showConfirmPassword ? 'text' : 'password'" 
+           formControlName="confirmPassword" 
+           placeholder="Re-enter password">
+    <button type="button" (click)="toggleConfirmPasswordVisibility()">
+      {{ showConfirmPassword ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+  <small *ngIf="registrationForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
+    Passwords do not match.
+  </small>
+</div>
+
 
     <!-- Address -->
     <div class="form-row">
