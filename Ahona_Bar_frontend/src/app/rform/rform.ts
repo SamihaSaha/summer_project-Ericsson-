@@ -46,7 +46,7 @@ export class Rform {
     }, { validators: this.passwordMatchValidator });
   }
 
-  
+
   onStateChange() {
     const selectedState = this.employeeForm.get('state')?.value;
     this.cities = this.stateCityMap[selectedState] || [];
